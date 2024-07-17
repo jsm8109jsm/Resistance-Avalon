@@ -12,8 +12,9 @@ const generateRandomString = (num: number) => {
   return result;
 };
 
-export async function GET(req: NextRequest) {
+export async function GET(req?: NextRequest) {
   const randomCode = generateRandomString(6);
+  console.log(randomCode);
   return NextResponse.json({
     code: randomCode,
   });

@@ -1,6 +1,20 @@
+"use client";
+
+import axios from "axios";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get("/api/game/code");
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
