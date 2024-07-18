@@ -8,7 +8,10 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("/api/game/code");
+        const response = await axios.post("/api/game/code", {
+          name: "test",
+          password: "P@ssw0rd",
+        });
         console.log(response);
       } catch (error) {
         console.log(error);

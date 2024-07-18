@@ -17,12 +17,18 @@ const generateRandomString = (len: number) => {
   return result;
 };
 
-export async function GET(req?: NextRequest) {
+/**
+ * 게임방을 생성하고 유저에게 게임 방 코드를 제공한다.
+ * @param req 방 생성 요청
+ * @returns 생성된 방 코드
+ */
+export async function POST(req: NextRequest) {
+  const body: { name: string; password: string } = await req.json();
   while (true) {
     const randomCode = generateRandomString(6);
     const roomSnap = await readDoc("room", randomCode);
     if (!roomSnap.exists()) {
-      createDocWithDocId("room", {}, randomCode);
+      createDocWithDocId("room", body, randomCode);
       return NextResponse.json({
         code: randomCode,
       });
