@@ -1,12 +1,9 @@
 import { atom } from "recoil";
-import { ModalType } from "./type";
+import ModalType from "./type";
 
-const ModalState = atom<ModalType>({
+const ModalState = atom<ModalType[]>({
   key: "ModalState",
-  default: {
-    isOpen: false,
-    body: undefined,
-  },
+  default: [],
 });
 
 export default ModalState;

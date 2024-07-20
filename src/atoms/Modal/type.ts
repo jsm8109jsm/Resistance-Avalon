@@ -1,4 +1,4 @@
-type ModalBodyType =
+type ModalType =
   | "SETTING"
   | "HELP"
   | "MY_INFO"
@@ -6,16 +6,9 @@ type ModalBodyType =
   | "ROOM_SETTING"
   | "ROOM_MAKING";
 
-type ModalType = {
-  isOpen: boolean;
-  body:
-    | undefined
-    | "SETTING"
-    | "HELP"
-    | "MY_INFO"
-    | "AUTH"
-    | "ROOM_SETTING"
-    | "ROOM_MAKING";
-};
+// type ModalType = {
+//   id: number;
+//   body: undefined | ModalBodyType;
+// };
 
-export type { ModalBodyType, ModalType };
+export default ModalType;

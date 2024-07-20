@@ -46,12 +46,12 @@ export default function Home() {
 
   //   console.log(data.user);
   // };
-  const [, setModal] = useRecoilState(ModalState);
+  const [modal, setModal] = useRecoilState(ModalState);
   return (
     <>
       <button
         onClick={() => {
-          setModal(() => ({ isOpen: true, body: "SETTING" }));
+          setModal((prev) => [...prev, "SETTING"]);
         }}
       >
         test
