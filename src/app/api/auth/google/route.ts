@@ -1,5 +1,5 @@
 import admin from "@/firebase/firebaseAdmin";
-import { createDocWithDocId, readDoc } from "@/functions/controlDoc";
+import { getDocHandler } from "@/functions/docHandlers";
 import { User } from "firebase/auth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -14,7 +14,7 @@ interface GoogleUser extends User {
 export async function POST(req: NextRequest) {
   const body: GoogleUser = await req.json();
   const { uid, stsTokenManager } = body;
-  const userSnap = await readDoc("user", uid);
+  const userSnap = await getDocHandler("user", uid);
   if (!userSnap.exists()) {
     return NextResponse.json({ ...stsTokenManager, isSignUp: true });
   }

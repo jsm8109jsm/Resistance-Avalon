@@ -16,6 +16,7 @@ const modalBody: { [x in ModalType]: ReactNode } = {
 };
 
 function ModalLayout() {
+  if (typeof document === "undefined") return <></>;
   const [modal, setModal] = useRecoilState(ModalState);
   const modalRoot: HTMLElement | null = document.querySelector("#modal");
   if (!modalRoot) return null;
