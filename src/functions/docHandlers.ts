@@ -52,6 +52,12 @@ const getDocHandler = (name: string, docId: string) => {
   return getDoc(doc(fireStore, name, docId));
 };
 
+/**
+ * fireStore의 문서를 수정한다.
+ * @param name 컬렉션 이름
+ * @param data 필드 데이터
+ * @param docId 문서 아이디
+ */
 const updateDocHandler = async (
   name: string,
   data: { [x: string]: any },
