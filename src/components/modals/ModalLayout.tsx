@@ -13,6 +13,7 @@ const modalBody: { [x in ModalType]: ReactNode } = {
   AUTH: "AUTH",
   ROOM_SETTING: "ROOM_SETTING",
   ROOM_MAKING: "ROOM_MAKING",
+  SIGN_UP: "SIGN_UP",
 };
 
 function ModalLayout() {

@@ -1,18 +1,14 @@
 "use client";
 
+import { useLogin } from "@/apis/auth/hooks";
 import ModalState from "@/atoms/Modal/atom";
 import fireAuth from "@/firebase/fireAuth";
-import axios from "axios";
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  FacebookAuthProvider,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Image from "next/image";
-import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
 export default function Home() {
+  const { mutate } = useLogin();
   // useEffect(() => {
   //   (async () => {
   //     try {
@@ -31,13 +27,14 @@ export default function Home() {
     const data = await signInWithPopup(fireAuth, provider); // 팝업창 띄워서 로그인
 
     console.log(data.user);
+    mutate(data.user);
 
-    try {
-      const response = await axios.post("/api/auth/google", data.user);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const response = await axios.post("/api/auth/google", data.user);
+    //   console.log(response);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   // const facebookLogin = async () => {
@@ -56,7 +53,18 @@ export default function Home() {
       >
         test
       </button>
-      <button onClick={googleLogin}>google login test</button>
+      <button
+        onClick={googleLogin}
+        className="flex gap-2 p-2 items-center justify-center rounded-lg hover:bg-[#F2F2F2] bg-white shadow-sm transition"
+      >
+        <Image
+          src={"/images/google.svg"}
+          alt={"구글 로그인"}
+          width={24}
+          height={24}
+        />
+        구글 계정으로 로그인하기
+      </button>
       {/* <button onClick={facebookLogin}>facebook login test</button> */}
     </>
   );

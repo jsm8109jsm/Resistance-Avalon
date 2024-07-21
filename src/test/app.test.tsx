@@ -12,7 +12,7 @@ const TestComponent = () => {
 
   return (
     <>
-      <button onClick={() => setModal({ isOpen: true, body: "SETTING" })}>
+      <button onClick={() => setModal((prev) => [...prev, "SETTING"])}>
         test
       </button>
       <div id="modal"></div>

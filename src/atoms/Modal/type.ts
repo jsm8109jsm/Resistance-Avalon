@@ -4,7 +4,8 @@ type ModalType =
   | "MY_INFO"
   | "AUTH"
   | "ROOM_SETTING"
-  | "ROOM_MAKING";
+  | "ROOM_MAKING"
+  | "SIGN_UP";
 
 // type ModalType = {
 //   id: number;
