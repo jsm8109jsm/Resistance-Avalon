@@ -1,5 +1,5 @@
 import admin from "@/firebase/firebaseAdmin";
-import { getDocHandler } from "@/functions/docHandlers";
+import { getDocHandler, setDocHandler } from "@/functions/docHandlers";
 import { User } from "firebase/auth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -26,6 +26,5 @@ export async function POST(req: NextRequest) {
   // } catch (error) {
   //   console.log(error);
   // }
-
   return NextResponse.json({ ...stsTokenManager });
 }

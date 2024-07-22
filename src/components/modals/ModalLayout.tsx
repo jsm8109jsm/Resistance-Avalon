@@ -5,6 +5,7 @@ import ModalType from "@/atoms/Modal/type";
 import { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import { useRecoilState } from "recoil";
+import SignUpModal from "./SignUpModal";
 
 const modalBody: { [x in ModalType]: ReactNode } = {
   SETTING: "SETTING",
@@ -13,7 +14,7 @@ const modalBody: { [x in ModalType]: ReactNode } = {
   AUTH: "AUTH",
   ROOM_SETTING: "ROOM_SETTING",
   ROOM_MAKING: "ROOM_MAKING",
-  SIGN_UP: "SIGN_UP",
+  SIGN_UP: <SignUpModal />,
 };
 
 function ModalLayout() {
@@ -32,7 +33,7 @@ function ModalLayout() {
           }
         >
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] bg-white p-8 rounded-30 focus-visible:outline-none"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white py-8 px-10 rounded-md focus-visible:outline-none"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative">{modalBody[item]}</div>
