@@ -13,8 +13,10 @@ export async function GET(req: NextRequest) {
     console.log(uid);
     const userSnap = await getDocHandler("user", uid);
     return NextResponse.json({ ...userSnap.data() });
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    console.log(error.errorInfo.code);
+    if (error.errorInfo.code.startsWith("auth"))
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     return NextResponse.json({ error: "Internal Server Error", code: 500 });
   }
 }
