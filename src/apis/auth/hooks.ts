@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { login } from ".";
+import { login, logout } from ".";
 import { User } from "firebase/auth";
 import { LoginData } from "./types";
 import { useRecoilState } from "recoil";
@@ -14,6 +14,15 @@ export const useLogin = () => {
       if (data.isSignUp) {
         setModal((prev) => [...prev, "SIGN_UP"]);
       }
+    },
+  });
+};
+
+export const useLogout = () => {
+  return useMutation(() => logout(), {
+    onSuccess: () => {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken ");
     },
   });
 };
