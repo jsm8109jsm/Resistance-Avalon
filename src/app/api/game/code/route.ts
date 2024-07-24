@@ -1,4 +1,4 @@
-import { createDocWithDocId, readDoc } from "@/functions/controlDoc";
+import { setDocHandler, getDocHandler } from "@/functions/docHandlers";
 import { NextRequest, NextResponse } from "next/server";
 
 /**
@@ -23,12 +23,12 @@ const generateRandomString = (len: number) => {
  * @returns 생성된 방 코드
  */
 export async function POST(req: NextRequest) {
-  const body: { name: string; password: string } = await req.json();
+  const body: { name: string; password?: string } = await req.json();
   while (true) {
     const randomCode = generateRandomString(6);
-    const roomSnap = await readDoc("room", randomCode);
+    const roomSnap = await getDocHandler("room", randomCode);
     if (!roomSnap.exists()) {
-      createDocWithDocId("room", body, randomCode);
+      setDocHandler("room", body, randomCode);
       return NextResponse.json({
         code: randomCode,
       });
