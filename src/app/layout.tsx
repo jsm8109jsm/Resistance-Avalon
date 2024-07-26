@@ -6,6 +6,7 @@ import { Roboto, Noto_Sans_KR } from "next/font/google"; // Roboto와 한글 Not
 import { QueryClient, QueryClientProvider } from "react-query";
 import { apiClient } from "@/libs/axios/apiClient";
 import { getRefreshToken } from "@/functions/getToken";
+import MyInfoProvider from "@/components/provider/MyInfoProvider";
 
 const notoSansKr = Noto_Sans_KR({
   // preload: true, 기본값
@@ -60,7 +61,9 @@ export default function RootLayout({
         <div id="modal" />
         <QueryClientProvider client={queryClient}>
           <RecoilRoot>
-            <PortalProvider>{children}</PortalProvider>
+            <PortalProvider>
+              <MyInfoProvider>{children}</MyInfoProvider>
+            </PortalProvider>
           </RecoilRoot>
         </QueryClientProvider>
       </body>

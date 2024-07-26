@@ -14,9 +14,9 @@ interface GoogleUser extends User {
 export async function POST(req: NextRequest) {
   const body: GoogleUser = await req.json();
   const { uid, stsTokenManager, photoURL } = body;
-  setDocHandler("user", { profileImg: photoURL }, uid);
   const userSnap = await getDocHandler("user", uid);
-  if (!userSnap.data()!.nickname) {
+  if (!userSnap.exists()) {
+    setDocHandler("user", { profileImg: photoURL }, uid);
     return NextResponse.json({ ...stsTokenManager, isSignUp: true });
   }
   // console.log(uid, stsTokenManager);
