@@ -1,7 +1,7 @@
 "use client";
 
-import ModalState from "@/atoms/Modal/atom";
-import ModalType from "@/atoms/Modal/type";
+import modalState from "@/atoms/modal/atom";
+import ModalType from "@/atoms/modal/type";
 import { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import { useRecoilState } from "recoil";
@@ -19,7 +19,7 @@ const modalBody: { [x in ModalType]: ReactNode } = {
 
 function ModalLayout() {
   if (typeof document === "undefined") return <></>;
-  const [modal, setModal] = useRecoilState(ModalState);
+  const [modal, setModal] = useRecoilState(modalState);
   const modalRoot: HTMLElement | null = document.querySelector("#modal");
   if (!modalRoot) return null;
   return ReactDOM.createPortal(

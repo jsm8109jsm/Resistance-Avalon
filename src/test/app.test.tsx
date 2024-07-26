@@ -5,10 +5,10 @@ import "@testing-library/jest-dom";
 import ModalLayout from "@/components/modals/ModalLayout";
 import { RecoilRoot, useRecoilState } from "recoil";
 import PortalProvider from "@/components/provider/PortalProvider";
-import ModalState from "@/atoms/Modal/atom";
+import modalState from "@/atoms/modal/atom";
 
 const TestComponent = () => {
-  const [, setModal] = useRecoilState(ModalState);
+  const [, setModal] = useRecoilState(modalState);
 
   return (
     <>

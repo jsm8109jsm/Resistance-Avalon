@@ -2,7 +2,7 @@
 
 import { useLogin } from "@/apis/auth/hooks";
 import { useGetMyInfo } from "@/apis/user/hooks";
-import ModalState from "@/atoms/Modal/atom";
+import modalState from "@/atoms/modal/atom";
 import fireAuth from "@/firebase/fireAuth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Image from "next/image";
@@ -31,7 +31,7 @@ export default function Home() {
     mutate(data.user);
   };
   const { data, isSuccess, isLoading } = useGetMyInfo();
-  const [modal, setModal] = useRecoilState(ModalState);
+  const [modal, setModal] = useRecoilState(modalState);
   if (isLoading) return <></>;
   return (
     <>
@@ -43,7 +43,7 @@ export default function Home() {
         test
       </button> */}
       {localStorage.accessToken && isSuccess ? (
-        <>
+        <button onClick={() => setModal((prev) => [...prev, "MY_INFO"])}>
           <Image
             src={data.profileImg}
             alt={`${data.nickname}의 프로필 사진`}
@@ -51,7 +51,7 @@ export default function Home() {
             height={50}
             className="rounded-full"
           />
-        </>
+        </button>
       ) : (
         <button
           onClick={googleLogin}
