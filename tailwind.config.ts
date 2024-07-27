@@ -16,6 +16,10 @@ const config: Config = {
       fontFamily: {
         roboto: ["var(--roboto)"],
       },
+      colors: {
+        light_beige: "#DFD3C3",
+        beige: "#D3C2AE",
+      },
     },
   },
   plugins: [],

@@ -6,11 +6,12 @@ import { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import { useRecoilState } from "recoil";
 import SignUpModal from "./SignUpModal";
+import MyInfoModal from "./MyInfoModal";
 
 const modalBody: { [x in ModalType]: ReactNode } = {
   SETTING: "SETTING",
   HELP: "HELP",
-  MY_INFO: "MY_INFO",
+  MY_INFO: <MyInfoModal />,
   AUTH: "AUTH",
   ROOM_SETTING: "ROOM_SETTING",
   ROOM_MAKING: "ROOM_MAKING",
@@ -32,12 +33,7 @@ function ModalLayout() {
             setModal(() => modal.filter((_, index) => modalIndex !== index))
           }
         >
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white py-8 px-10 rounded-md focus-visible:outline-none"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="relative">{modalBody[item]}</div>
-          </div>
+          {modalBody[item]}
         </div>
       );
     }),
